@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine 💖</title>
+<style>
+  body { 
+    text-align:center; 
+    font-family:sans-serif; 
+    background: #ffe6f0; 
+    color: #c00064; 
+    padding: 20px;
+  }
+  h1 { font-size:2.5em; margin-top:30px; }
+  .question { margin: 15px 0; }
+  input, select, textarea { padding:5px; font-size:1em; width: 80%; max-width:400px; }
+  button { 
+    padding:10px 20px; 
+    font-size:1em; 
+    margin-top:15px; 
+    cursor:pointer; 
+    background:#c00064; 
+    color:white; 
+    border:none; 
+    border-radius:5px; 
+  }
+  .heart { 
+    color:red; 
+    font-size:80px; 
+    animation:beat 1s infinite; 
+    margin-top:30px; 
+  }
+  @keyframes beat { 
+    0%, 100%{transform:scale(1);} 
+    50%{transform:scale(1.3);} 
+  }
+  .hidden { display:none; }
+  .answers { text-align:left; display:inline-block; margin-top:20px; }
+  .answers p { margin:5px 0; }
+  #loveMessage { font-size:1.5em; margin-top:20px; color:#c00064; }
+</style>
+</head>
+<body>
+
+<h1>🌹 A Little Valentine Surprise 🌹</h1>
+
+<div id="formDiv">
+  <div class="question">1. When did I first feel you are special to me? ❤️ <br><input type="text" id="q1" value="2022.05.09"></div>
+  <div class="question">2. When is our anniversary? <br><input type="text" id="q2" value="2023.06.21"></div>
+  <div class="question">3. What is your favorite memory of us together? <br><textarea id="q3"></textarea></div>
+  <div class="question">4. What is my favorite memory of us together? <br><textarea id="q4"></textarea></div>
+  <div class="question">5. Which small thing I do makes you happiest? <br><textarea id="q5"></textarea></div>
+  <div class="question">6. If you describe our love in one word, what is it? <br><input type="text" id="q6"></div>
+  <div class="question">7. What song reminds you of me? <br><input type="text" id="q7"></div>
+  <div class="question">8. What song reminds me of you? <br><input type="text" id="q8" value="Samanala Wewa Purawannata"></div>
+  <div class="question">9. What do you feel when you see my name on your phone? <br><input type="text" id="q9"></div>
+  <div class="question">10. What is one dream you want us to achieve together? <br><textarea id="q10"></textarea></div>
+  <div class="question">11. What is one thing you never told me but feel deeply about me? <br><textarea id="q11"></textarea></div>
+  
+  <button onclick="showHeart()">Submit ❤️</button>
+</div>
+
+<div id="heartDiv" class="hidden">
+  <div class="heart">💖</div>
+  <h2>I Love You My Dotty ❤️</h2>
+  <div class="answers">
+    <p>1. Special date: <span id="a1"></span></p>
+    <p>2. Anniversary: <span id="a2"></span></p>
+    <p>3. Your favorite memory: <span id="a3"></span></p>
+    <p>4. My favorite memory: <span id="a4"></span></p>
+    <p>5. Small thing that makes you happiest: <span id="a5"></span></p>
+    <p>6. Describe our love in one word: <span id="a6"></span></p>
+    <p>7. Song that reminds you of me: <span id="a7"></span></p>
+    <p>8. Song that reminds me of you: <span id="a8"></span></p>
+    <p>9. Feeling when you see my name on phone: <span id="a9"></span></p>
+    <p>10. One dream together: <span id="a10"></span></p>
+    <p>11. One thing you feel deeply but never told me: <span id="a11"></span></p>
+  </div>
+</div>
+
+<script>
+function showHeart() {
+  // Get values
+  for(let i=1; i<=11; i++){
+    let val = document.getElementById('q'+i).value || "(No answer)";
+    document.getElementById('a'+i).textContent = val;
+  }
+  
+  // Hide form and show heart
+  document.getElementById('formDiv').classList.add('hidden');
+  document.getElementById('heartDiv').classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>
