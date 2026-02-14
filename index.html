@@ -38,6 +38,7 @@
   .answers { text-align:left; display:inline-block; margin-top:20px; }
   .answers p { margin:5px 0; }
   #loveMessage { font-size:1.5em; margin-top:20px; color:#c00064; }
+  #errorMsg { color:darkred; font-size:1.2em; margin-top:15px; }
 </style>
 </head>
 <body>
@@ -45,8 +46,8 @@
 <h1>🌹 A Little Valentine Surprise 🌹</h1>
 
 <div id="formDiv">
-  <div class="question">1. When did I first feel you are special to me? ❤️ <br><input type="text" id="q1" value="2022.05.09"></div>
-  <div class="question">2. When is our anniversary? <br><input type="text" id="q2" value="2023.06.21"></div>
+  <div class="question">1. When did I first feel you are special to me? ❤️ <br><input type="text" id="q1" placeholder="YYYY.MM.DD"></div>
+  <div class="question">2. When is our anniversary? <br><input type="text" id="q2" placeholder="YYYY.MM.DD"></div>
   <div class="question">3. What is your favorite memory of us together? <br><textarea id="q3"></textarea></div>
   <div class="question">4. What is my favorite memory of us together? <br><textarea id="q4"></textarea></div>
   <div class="question">5. Which small thing I do makes you happiest? <br><textarea id="q5"></textarea></div>
@@ -58,6 +59,7 @@
   <div class="question">11. What is one thing you never told me but feel deeply about me? <br><textarea id="q11"></textarea></div>
   
   <button onclick="showHeart()">Submit ❤️</button>
+  <div id="errorMsg" class="hidden">Oops! Q1 or Q2 is incorrect. Try again ❤️</div>
 </div>
 
 <div id="heartDiv" class="hidden">
@@ -80,15 +82,25 @@
 
 <script>
 function showHeart() {
-  // Get values
-  for(let i=1; i<=11; i++){
-    let val = document.getElementById('q'+i).value || "(No answer)";
-    document.getElementById('a'+i).textContent = val;
-  }
+  const correctQ1 = "2022.05.09";
+  const correctQ2 = "2023.06.21";
   
-  // Hide form and show heart
-  document.getElementById('formDiv').classList.add('hidden');
-  document.getElementById('heartDiv').classList.remove('hidden');
+  const userQ1 = document.getElementById('q1').value.trim();
+  const userQ2 = document.getElementById('q2').value.trim();
+  
+  if(userQ1 === correctQ1 && userQ2 === correctQ2){
+    // Populate answers
+    for(let i=1; i<=11; i++){
+      let val = document.getElementById('q'+i).value || "(No answer)";
+      document.getElementById('a'+i).textContent = val;
+    }
+    // Show heart message
+    document.getElementById('formDiv').classList.add('hidden');
+    document.getElementById('heartDiv').classList.remove('hidden');
+  } else {
+    // Show error message
+    document.getElementById('errorMsg').classList.remove('hidden');
+  }
 }
 </script>
 
